@@ -21,7 +21,7 @@ public class IndexHome {
         user.setName(name);
         String salt = CypherTools.generateShortUUID();
         user.setSalt(salt);
-        user.setMobile("123456789");
+        user.setMobile("12345678911");
         user.setPwd(CypherTools.shaEncode("123456",salt));
         userService.addUser(user);
         int uid = user.getUid();
