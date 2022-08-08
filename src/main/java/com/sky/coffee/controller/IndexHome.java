@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/coffee")
@@ -16,7 +17,7 @@ public class IndexHome {
     @Resource
     public IUserService userService;
     @GetMapping("/home")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+    public String hello(@RequestParam(value = "name", defaultValue = "World") String name, HttpSession session) {
         User user = new User();
         user.setName(name);
         String salt = CypherTools.generateShortUUID();
@@ -27,6 +28,7 @@ public class IndexHome {
         int uid = user.getUid();
         System.out.println(uid);
         User one = userService.findUserById(uid);
+        session.setAttribute(one.getMobile(),name);
         return String.format("Hello %s!", one.getMobile());
     }
 }

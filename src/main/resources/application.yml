@@ -1,4 +1,15 @@
 spring:
+    main:
+      allow-bean-definition-overriding: true
+    session:
+        store-type: redis
+        redis:
+            flush-mode: on_save
+            namespace: spring:session
+    redis:
+        host: 127.0.0.1
+        password: daily
+        port: 6379
     datasource:
         username: root
         url: jdbc:mysql://localhost:3306/coffee?serverTimezone=UTC&useSSL=true
