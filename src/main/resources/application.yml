@@ -10,6 +10,7 @@ spring:
         host: 127.0.0.1
         password: daily
         port: 6379
+        namespace: 'coffee'
     datasource:
         username: root
         url: jdbc:mysql://localhost:3306/coffee?serverTimezone=UTC&useSSL=true
@@ -17,4 +18,8 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
 server:
     port: 9090
+
+logging:
+    level:
+        tk.mybatis: TRACE
 

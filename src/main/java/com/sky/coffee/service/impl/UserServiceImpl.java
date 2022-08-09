@@ -2,6 +2,7 @@ package com.sky.coffee.service.impl;
 
 import com.sky.coffee.component.redis.RedisService;
 import com.sky.coffee.entity.User;
+import com.sky.coffee.entity.UserInfo;
 import com.sky.coffee.mapper.UserMapper;
 import com.sky.coffee.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -35,5 +37,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User user = userMapper.selectById(id);
         redisService.set(""+user.getMobile(),user);
         return user;
+    }
+
+    @Override
+    public List<UserInfo> findUserInfo() {
+        return userMapper.findUserInfo();
     }
 }

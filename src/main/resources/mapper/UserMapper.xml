@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sky.coffee.mapper.UserMapper">
-
+    <select id="findUserInfo" resultType="com.sky.coffee.entity.UserInfo">
+        SELECT  u.*,i.user_name  FROM `user` u
+        LEFT JOIN user_info i on
+        u.uid = i.uid
+        WHERE u.uid = 20
+    </select>
 </mapper>
