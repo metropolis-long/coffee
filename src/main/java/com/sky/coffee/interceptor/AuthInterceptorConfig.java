@@ -31,13 +31,14 @@ public class AuthInterceptorConfig implements WebMvcConfigurer {
                                 "/webjars/**",
                                 "/v3/**",
                                 "/error",
-                                "/favicon.ico"
+                                "/favicon.ico",
+                                "/coffee/home"
                         )
                 );
     }
 
     @Bean
-    AuthInterceptor getInterceptor() {
-        return new AuthInterceptor();
+    LoginAuthInterceptor getInterceptor() {
+        return new LoginAuthInterceptor();
     }
 }

@@ -1,6 +1,6 @@
 package com.sky.coffee.interceptor;
+
 import com.alibaba.fastjson.JSONObject;
-import com.mysql.cj.protocol.MessageListener;
 import com.sky.coffee.entity.UserInfo;
 import com.sky.coffee.service.ICacheService;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-public class AuthInterceptor implements HandlerInterceptor {
+public class LoginAuthInterceptor implements HandlerInterceptor {
 
     @Resource
     ICacheService cacheService;
