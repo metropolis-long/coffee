@@ -3,6 +3,7 @@ package com.sky.coffee.service;
 import com.sky.coffee.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sky.coffee.entity.UserInfo;
+import com.sky.coffee.msg.ResultBody;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ import java.util.List;
 public interface IUserService extends IService<User> {
     boolean addUser(User user);
     User findUserById(Integer id);
-    List<UserInfo> findUserInfo();
+    List<UserInfo> findUserInfo(Integer id);
+    ResultBody login(String loginName, String pwd);
+    User findOne(String loginName);
 }

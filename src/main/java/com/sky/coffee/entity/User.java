@@ -27,7 +27,7 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    private String name;
+    private String loginName;
 
     /**
      * 密文
@@ -72,12 +72,12 @@ public class User implements Serializable {
     public void setUid(Integer uid) {
         this.uid = uid;
     }
-    public String getName() {
-        return name;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
     public String getPwd() {
         return pwd;
@@ -133,7 +133,7 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
             "uid=" + uid +
-            ", name=" + name +
+            ", loginName=" + loginName +
             ", pwd=" + pwd +
             ", mobile=" + mobile +
             ", email=" + email +

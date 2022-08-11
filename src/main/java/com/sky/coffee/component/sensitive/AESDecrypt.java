@@ -1,6 +1,6 @@
 package com.sky.coffee.component.sensitive;
 
-import com.sky.coffee.tool.sensitivity.AESUtil;
+import com.sky.coffee.tool.AESUtil;
 import com.sky.coffee.tool.sensitivity.SensitiveDecodeTool;
 import com.sky.coffee.tool.sensitivity.SensitiveField;
 import org.springframework.stereotype.Component;

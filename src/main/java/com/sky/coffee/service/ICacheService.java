@@ -8,11 +8,9 @@ import java.util.List;
 public interface ICacheService {
     UserInfo getUserInfo(HttpServletRequest request);
 
-    void setLoginUserInfo(String key, HttpServletRequest request, UserInfo info);
-
     void outLogin(String sessionId);
 
-
+    String getCookie(final HttpServletRequest request);
 
     void setLoginUserInfo(HttpServletRequest request, UserInfoDTO info);
 

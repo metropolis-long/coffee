@@ -11,10 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
+/**
+ * 登录拦截器.
+ */
 public class LoginAuthInterceptor implements HandlerInterceptor {
 
     @Resource
     ICacheService cacheService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         UserInfo user = cacheService.getUserInfo(request);

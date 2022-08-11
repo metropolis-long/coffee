@@ -21,7 +21,7 @@ public class AuthInterceptorConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/authentication/**")
                 .excludePathPatterns("/stat/warReport/**")
                 .excludePathPatterns("/swagger-resources/**")
-                .excludePathPatterns("/webjars/**")
+                .excludePathPatterns("/api/user/**")
                 .excludePathPatterns("/v2/**")
                 .excludePathPatterns("/swagger-ui.html/**")
                 .excludePathPatterns(

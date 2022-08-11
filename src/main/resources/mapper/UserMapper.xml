@@ -5,6 +5,6 @@
         SELECT  u.*,i.user_name  FROM `user` u
         LEFT JOIN user_info i on
         u.uid = i.uid
-        WHERE u.uid = 20
+        WHERE u.uid = #{id}
     </select>
 </mapper>

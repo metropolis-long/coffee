@@ -15,5 +15,5 @@ import java.util.List;
  * @since 2022-08-03
  */
 public interface UserMapper extends BaseMapper<User> {
-    List<UserInfo> findUserInfo();
+    List<UserInfo> findUserInfo(Integer id);
 }

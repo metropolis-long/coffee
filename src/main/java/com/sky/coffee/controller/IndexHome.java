@@ -19,7 +19,7 @@ public class IndexHome {
     @GetMapping("/home")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name, HttpSession session) {
         User user = new User();
-        user.setName(name);
+        user.setLoginName(name);
         String salt = CypherTools.generateShortUUID();
         user.setSalt(salt);
         user.setMobile("12345678911");
@@ -28,7 +28,7 @@ public class IndexHome {
         int uid = user.getUid();
         System.out.println(uid);
         User one = userService.findUserById(uid);
-        session.setAttribute(one.getMobile(),name);
+        session.setAttribute(one.getMobile(),one.getLoginName());
         return String.format("Hello %s!", one.getMobile());
     }
 }

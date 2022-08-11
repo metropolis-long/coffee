@@ -1,4 +1,4 @@
-package com.sky.coffee.tool.sensitivity;
+package com.sky.coffee.tool;
 
 import java.math.BigInteger;
 

@@ -32,20 +32,10 @@ public class CacheService implements ICacheService {
     @Override
     public UserInfo getUserInfo(HttpServletRequest request) {
         String key= getCookie(request);
-        UserInfo info=(UserInfo)redisService.get(key);
+        UserInfo info= (UserInfo) request.getSession().getAttribute(key);
         return info;
     }
 
-    /**
-     * 设置登录会话缓存.
-     * @param request
-     * @param info
-     * @return cookie
-     */
-    @Override
-    public void setLoginUserInfo(String key,HttpServletRequest request,UserInfo info) {
-        redisService.set(key,info,60*60*24);
-    }
 
     @Override
     public void outLogin(String sessionId) {
@@ -57,18 +47,19 @@ public class CacheService implements ICacheService {
         redisService.set(getCookie(request),info,60*60*24);
     }
     /**
-     * 获取JSESSIONID.
+     * 获取 token.
      * @param request
      * @return
      */
-    private String getCookie(final HttpServletRequest request){
+    @Override
+    public String getCookie(final HttpServletRequest request){
         final Cookie[] cookies =request.getCookies();
         if (NullUtil.isNull(cookies)){
             return "";
         }
         for (Cookie cookie:cookies){
             System.out.println(cookie.getName()+":::"+cookie.getValue());
-            if ("JSESSIONID".equals(cookie.getName())){
+            if ("cf_token".equals(cookie.getName())){
                 return cookie.getValue();
             }
         }

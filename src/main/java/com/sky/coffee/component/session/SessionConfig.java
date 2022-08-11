@@ -14,7 +14,6 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(RedisSessionProperties.class)
-
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 100, redisNamespace = "coffee")
 public class SessionConfig {
 
