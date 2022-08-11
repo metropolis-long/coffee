@@ -18,10 +18,6 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
 server:
     port: 9090
-    servlet:
-        session:
-            cookie:
-                name: cf_token
 logging:
     level:
         tk.mybatis: TRACE

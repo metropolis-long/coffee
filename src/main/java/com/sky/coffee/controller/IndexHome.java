@@ -18,7 +18,11 @@ public class IndexHome {
     public IUserService userService;
     @GetMapping("/home")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name, HttpSession session) {
-        User user = new User();
+        User user = userService.findOne(name);
+        if (user != null){
+            return String.format("Hello %s!", name);
+        }
+        new User();
         user.setLoginName(name);
         String salt = CypherTools.generateShortUUID();
         user.setSalt(salt);

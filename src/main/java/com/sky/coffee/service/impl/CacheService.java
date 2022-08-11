@@ -59,7 +59,7 @@ public class CacheService implements ICacheService {
         }
         for (Cookie cookie:cookies){
             System.out.println(cookie.getName()+":::"+cookie.getValue());
-            if ("cf_token".equals(cookie.getName())){
+            if ("SESSION".equals(cookie.getName())){
                 return cookie.getValue();
             }
         }

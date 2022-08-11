@@ -8,6 +8,8 @@ import com.sky.coffee.service.ICacheService;
 import com.sky.coffee.service.IUserService;
 import com.sky.coffee.tool.CypherTools;
 import com.sky.coffee.tool.NullUtil;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,11 +39,12 @@ import java.util.UUID;
 public class UserController {
     @Resource
     public IUserService userService;
-
+    @Resource
+    private DefaultCookieSerializer defaultCookieSerializer;
     @Resource
     private ICacheService cacheService;
     @GetMapping("/info")
-    public String hello(HttpSession session,@CookieValue("cf_token") String sessionId) {
+    public String hello(HttpSession session,@CookieValue("SESSION") String sessionId) {
         UserInfo userInfo = (UserInfo) session.getAttribute(sessionId);
         return userInfo.getUserName();
     }
@@ -61,21 +65,28 @@ public class UserController {
         if (NullUtil.isNull(loginName) || NullUtil.isNull(pwd)) {
             return new ResultBody(ResultCodeMsg.PARAM_IS_BLANK.getCode(), ResultCodeMsg.PARAM_IS_BLANK.getMsg());
         }
-        String cookie = cacheService.getCookie(request);
-        System.out.println(cookie);
+
         ResultBody data = userService.login(loginName, pwd);
         User info = (User) data.getData();
+
         if (data.getCode() == 200) {
-            String key = UUID.randomUUID().toString();
-//            Cookie cookie = new Cookie("token", key);
-////            cookie.setDomain("coffee.zhuyelong.cn");
-////            cookie.setPath("/");
-//            response.addCookie(cookie);
+            HttpSession httpSession=request.getSession(true);
+            defaultCookieSerializer.writeCookieValue(new CookieSerializer.CookieValue(request, response, httpSession.getId()));
+            response.getHeaders("");
+            String sessionId=null;
+            String key = response.getHeader("Set-Cookie");
+            String[] split = key.split(";");
+            for (String s : split) {
+                if ("SESSION".equals(s.split("=")[0])) {
+                    sessionId= s.split("=")[1];
+                    break;
+                }
+            }
             List<UserInfo> list = userService.findUserInfo(info.getUid());
-            String sesssionId= session.getId();
-            System.out.println("session;;;;;;"+sesssionId);
-            session.setAttribute(key,list.get(0));
+            System.out.println("key==="+sessionId);
+            session.setAttribute(sessionId,list.get(0));
         }
         return data;
     }
+
 }
