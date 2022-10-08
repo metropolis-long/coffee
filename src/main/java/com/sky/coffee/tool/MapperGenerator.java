@@ -15,15 +15,15 @@ public class MapperGenerator {
                     builder.author("zhuye") // 设置作者
 //                            .enableSwagger() // 开启 swagger 模式
                             .fileOverride()
-                            .outputDir("D:\\workspace\\java\\coffee\\src\\generator");// 指定输出目录
+                            .outputDir("D:\\workspace\\java\\coffee\\src\\main\\java");// 指定输出目录
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.skip.coffee") // 设置父包名
+                    builder.parent("com.sky.coffee") // 设置父包名
 //                            .moduleName("system") // 设置父包模块名
                             .pathInfo(Collections.singletonMap(OutputFile.xml, "D:\\workspace\\java\\coffee\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("user") // 设置需要生成的表名
+                    builder.addInclude("coffee") // 设置需要生成的表名
                             .addTablePrefix("t_", "c_"); // 设置过滤表前缀
                 })
                 .strategyConfig(builder -> {
