@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
+
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -79,7 +79,7 @@ public class TestLambda {
     void seeData(){
         List<Coffee> list =coffeeMapper.selectList(null);
         list.stream().forEach(coffee -> {
-            System.out.println(coffee.getCoffeeName().toString());
+            System.out.println(coffee.toString());
         });
     }
 }
